@@ -1,0 +1,40 @@
+.header {
+
+    & > nav {
+        width: 100%;
+        ul {
+            li {
+                span {
+                    border-top: 1px solid $bg-body;
+                    border-bottom: 1px solid $bg-body;
+                    margin-top: -1px;
+                    margin-bottom: -1px;
+                }
+            }
+        }
+    }
+
+    & > ul {
+        li {
+            white-space: nowrap;
+        }
+
+        @include hasta (25rem) {
+            width: 100%;
+            padding-right: 1em;
+        }
+    }
+
+    // include nav {@content}
+    $map:(
+        size: 25rem,
+        flex: 'main-center',
+        color--active: $color-b,
+        padding-button: 1em,
+        border-bottom: none
+    );
+    @include menu-simple($map...);
+    @include menu-estas-aqui;
+    -webkit-transition: all 2s;
+            transition: all 2s;
+}

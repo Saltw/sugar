@@ -1,0 +1,47 @@
+.footer {
+    width: 100%;
+    background: $color-body;
+
+    &__info {
+        background-color: $color-subtitle;
+        color: #fff;
+        line-height: 2;
+        font-style: italic;
+        word-spacing: normal;
+        letter-spacing: normal;
+        text-align: right;
+
+        p.direccion {
+            padding-right: 1rem;
+            @include rwd-font-size (0.5rem, 0.8rem, 20rem, 80rem, 0.3rem);
+        }
+        ul {
+            margin: 0 auto;
+            li {
+                padding-right: 1em;
+
+                a, span {
+                    white-space: nowrap;
+                    padding-bottom: $top;
+                    display: block;
+                    @include rwd-font-size (0.4rem, 0.6rem, 20rem, 80rem, 0.3rem);
+                }
+                a:target, a:focus, a:hover {
+                    color: colorea(#fff, d2);
+                }
+            }
+
+            .favicon {
+                margin-right: 2em;
+                background-repeat: no-repeat;
+                background: url("favicon.png") center / cover;
+            }
+        }
+    }
+    &--active {
+        padding-left: 1em;
+        padding-right: 1em;
+        background-color: $bg-body;
+        color: $color-subtitle;
+    }
+}

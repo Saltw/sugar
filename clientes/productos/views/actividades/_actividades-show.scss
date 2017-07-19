@@ -1,0 +1,53 @@
+.actividades-show {
+
+    width: 100%;
+    & > section,
+    & > footer {
+        width: 80%;
+        margin: auto;
+    }
+
+    strong {
+        font-variant: normal;
+        font-weight: bold;
+        border: none;
+    }
+
+    /* Imágenes incrustadas en el texto ckeditor*/
+    img {
+        width: 80%;
+        margin: 2% 10% 5% 10%;
+        box-shadow: 0 14pt 28pt rgba(#000, 0.25),
+        0 10pt 10pt rgba(#000, 0.22);
+    }
+
+    $mip:(
+        // Número de pestañas
+        through-tab-num: 2,
+        // Número de vueltas del each
+        through-tab-id: 200,
+        id-tab: actividades-show-tab,
+        id-contenido: actividades-show-contenido
+    );
+    @include tabs ($mip...);
+
+    .caracteristicas {
+        p,
+        ul, li {
+            text-align: center;
+        }
+    }
+
+    .ficha {
+        ul {
+            li {
+                list-style-type: disc;
+                list-style-position: inside;
+            }
+        }
+    }
+
+    footer {
+        @include stilos-footer-simple;
+    }
+}

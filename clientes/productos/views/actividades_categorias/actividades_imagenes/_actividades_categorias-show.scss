@@ -1,0 +1,10 @@
+.actividades_categorias-show {
+    @include mostrar-paperclips-actividades_imagenes ((id:'actividades_categorias-show-actividad-portada')...);
+    @include mostrar-paperclips-actividades_imagenes ((id:'actividades_categorias-show-actividad-galeria')...);
+    @include mostrar-paperclips-actividades_imagenes ((id:'actividades_categorias-show-actividad-galeria-icon')...);
+
+    .producto {
+        // actividades_imagenes/actividades-index.scss
+        @include producto-img;
+    }
+}

@@ -1,0 +1,9 @@
+.actividades-show {
+    @include mostrar-paperclips-actividades_imagenes ((id:'actividades-show-galeria')...);
+    @include mostrar-paperclips-actividades_imagenes ((id:'actividades-show-galeria-icon')...);
+    @include mostrar-paperclips-actividades_imagenes ((id:'actividades-show-portada')...);
+    @include mostrar-paperclips-actividades_imagenes ((id:'actividades-show-portada-icon')...);
+
+    @include galeria-default;
+    @include stilos-show-img;
+}

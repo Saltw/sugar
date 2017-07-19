@@ -1,0 +1,62 @@
+@mixin mostrar-paperclips-actividades_categorias (
+    $id: ActividadCategoria,
+    $bg-position: 50% 50%,
+    $bg-size: cover,
+    $bg-repeat: no-repeat
+){
+    // has_attached_file : imagen
+    @if ($id == 'actividades_categorias-show') or ($id == 'actividades_categorias-index'){
+        <%ActividadCategoria.order(:orden).all.each do |img| %>
+        <%unless img.imagen.blank?%>
+        // Contenedor de la imagen
+        ##{$id}--<%=img.id%> {
+            <% 8.downto(1) do |i| %>
+            @media all and (min-width: <%=i-1%>*20em) and (max-width: <%=i%>*20em) {
+                <% url = eval("img.imagen(:lands_"+i.to_s+"x)") %>
+                &:before {
+                    background: url('<%= url %>');
+                }
+            }
+            <%end%>
+
+            @media all and (min-width:160em) {
+                &:before {
+                    background: url('<%= img.imagen(:original)%>');
+                }
+            }
+            @media all {
+                &:before {
+                    background-position: $bg-position;
+                    background-size: $bg-size;
+                    background-repeat: $bg-repeat;
+                }
+            }
+        }
+        <%end%>
+        <%end%>
+    }
+
+    @else if ($id == 'actividades_categorias-index-icon') or ($id == 'actividades_categorias-show-icon') or ($id == 'actividades-index-categorias-icon'){
+        <%ActividadCategoria.all.each do |img| %>
+        <%unless img.imagen.blank?%>
+        ##{$id}--<%=img.id%> {
+
+            &:before {
+                background: url('<%= img.imagen(:icon_lands) %>');
+
+                background-position: $bg-position;
+                background-size: $bg-size;
+                background-repeat: $bg-repeat;
+            }
+        }
+        <%end%>
+        <%end%>
+    }
+
+
+    @else {
+        @media all {
+            background-color: tomato;
+        }
+    }
+}

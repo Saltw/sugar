@@ -1,0 +1,309 @@
+@mixin ultimas ($capirote: top){
+    margin: 0 auto;
+
+    @include desde (10rem) {
+        @include grid-fixed (article, 1);
+    }
+    @include desde (40rem) {
+        @include grid-fixed (article, 2);
+    }
+    @include desde (110rem) {
+        @include grid-fixed (article, 3);
+    }
+
+    h3 {
+        width: 100%;
+        /* margin: auto;*/
+    }
+
+    & > article {
+        -webkit-transition: ease-in-out 0.5s;
+                transition: ease-in-out 0.5s;
+
+        // padding-top: 4%;
+        padding-bottom: 4%;
+
+        .titulo,
+        .subtitulo,
+        p {
+            padding-left: 4%;
+            padding-right: 4%;
+        }
+
+        .titulo,
+        .subtitulo {
+            margin: 0;
+        }
+
+        .titulo {
+            padding-top: 4%;
+            padding-bottom: 4%;
+
+            color: $color-body;
+            border: 1px solid colorea($color-b, l4);
+            $map:(
+                px: 10px,
+                bg: colorea($color-b, l4)
+            );
+            @if ($capirote == top) {
+                @include capirote-top ($map...);
+            }
+            @else {
+                @include capirote-bottom($map...);
+            }
+        }
+
+        .subtitulo {
+            padding-top: 3%;
+            padding-bottom: 4%;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+        }
+
+        &:hover, &:target, &:focus {
+            box-shadow: $box-shadow--hover;
+        }
+    }
+}
+
+@mixin ultimas-img {
+    header {
+        // Anular stilos .legal
+        padding: 0;
+        margin: 0;
+
+    }
+    figure {
+        height: 50vmin;
+        margin: 0 auto;
+        overflow: hidden;
+
+        $fondo: linear-gradient(colorea($color-t1, l2), transparent);
+
+        @include simple-before ((bg-color: $fondo)...);
+    }
+}
+
+@mixin todas {
+    .todas {
+        width: 100%;
+        margin: 0 auto;
+
+        h3 {
+            width: 100%;
+        }
+
+        ul {
+            a {
+                display: block;
+                &:hover, &:target, &:focus {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}
+
+@mixin desplegame {
+    .desplegable {
+        margin: 0;
+        $mop:(
+            color: $color-subtitle,
+            color--hover: $color-title,
+            color--checked: $color-t2,
+            borde: none,
+            border-top: none
+        );
+        @include desplegable ($mop...);
+
+        & > article {
+            text-align: justify;
+            ul {
+                li {
+                    list-style-type: disc;
+                    list-style-position: inside;
+                }
+            }
+        }
+    }
+}
+
+@mixin portada-img {
+    $h-portada: 60vmin;
+
+    & > header {
+        position: relative;
+
+        h2,
+        figure {
+            width: 100%;
+        }
+
+        h2 {
+            position: absolute;
+            z-index: $z-index-fixed;
+            left: 0;
+            right: 0;
+            line-height: 1.1em;
+
+            // Si se suponen títulos de + de una línea
+            @include wrapping-ie-abcenter;
+
+            color: #fff;
+            text-shadow: 1px 1px 2px #000;
+
+            @include responsive-font-size (1.5rem, 4rem, 20rem, 100rem);
+        }
+
+        figure {
+            height: $h-portada;
+            margin: 0;
+            $fondo: linear-gradient(colorea($color-t1, l2), transparent);
+
+            @include simple-before ((bg-color: $fondo)...);
+        }
+    }
+}
+
+@mixin stilos-show {
+    // Subtítulo
+    & > h3 {
+        padding: 1em 0;
+    }
+
+    p,
+    a,
+    i,
+    strong,
+    figure {
+        font-size: 1.5em;
+    }
+
+    strong {
+        font-variant: normal;
+        font-weight: bold;
+        border: none;
+    }
+
+    /* Imágenes incrustadas en el texto ckeditor*/
+    img {
+        width: 80%;
+        margin: 2% 10% 5% 10%;
+        box-shadow: 0 14pt 28pt rgba(#000, 0.25),
+        0 10pt 10pt rgba(#000, 0.22);
+    }
+}
+
+@mixin stilos-show-img {
+    &,
+    & > header {
+        width: 100%;
+        border-bottom: none;
+    }
+
+    & > h3,
+    & > p,
+    & > article,
+    & > section,
+    & > footer {
+        width: 80%;
+        margin: auto;
+
+        p {
+            margin-right: 0;
+        }
+    }
+
+    & > section,
+    & > article,
+    & > footer {
+        padding-top: 5%;
+        padding-bottom: 5%;
+        border-top: $border-default;
+    }
+
+    section {
+        header {
+            border-bottom: none;
+        }
+    }
+}
+
+@mixin footer-simple {
+    footer {
+        margin-top: 5%;
+        &,
+        & strong,
+        & p {
+            text-align: right;
+            font-size: 1em;
+        }
+    }
+
+    nav.anterior-siguiente {
+        margin-top: 5%;
+        a {
+            // para IE
+            display: block;
+            padding: 0.5em 1em;
+            @include boton-gradient;
+
+            figure {
+                margin: 0;
+            }
+        }
+    }
+}
+
+@mixin footer-img {
+    footer {
+        padding-bottom: 5%;
+        nav.anterior-siguiente {
+            & > h3 {
+                width: 100%;
+            }
+            a {
+                // Anular boton-gradient
+                padding: 0;
+                border-radius: 100%;
+                figcaption {
+                }
+
+                // Contraresta mixin boton-gradient
+                &:hover, &:focus, &:target {
+                    border: none;
+                }
+
+                & figure {
+                    @include spartano-before;
+                    @include button-img;
+
+                    figcaption {
+                        @include rwd-font-size (0.6rem, 1.1rem, 20rem, 80rem, 0.3rem);
+                        margin-top: 1em;
+                        text-align: center;
+                        font-weight: bold;
+                        white-space: normal;
+                        font-style: normal;
+                        font-family: $font-family-subtitle;
+                        color: $color-subtitle;
+
+                        strong {
+                            white-space: nowrap;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.entradas-index {
+    .ultimas {
+        @include ultimas;
+    }
+    @include todas;
+}

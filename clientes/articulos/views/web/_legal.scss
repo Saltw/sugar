@@ -1,0 +1,57 @@
+.legal {
+    padding-bottom: 10vmin;
+
+    header {
+        padding: 1em 0;
+        margin-bottom: 1em;
+        background-color: transparent;
+        // border-top definido en el main ../theme/tema
+        // border-top: 0.0625pt solid rgba($color-body, 0.7);
+        border-bottom: $border-default;
+        h2, h3 {
+            margin: auto;
+            // padding-top: 1em;
+            // padding-bottom: 1em;
+            line-height: 2;
+            text-align: center;
+        }
+        address {
+            padding-left: 1em;
+            padding-right: 1em;
+        }
+    }
+
+    p, li {
+        @include desde (35rem) {
+            text-align: justify;
+        }
+    }
+
+    li {
+        margin-bottom: 0.6em;
+
+        &:only-of-type,
+        &:last-child,
+        &:only-child {
+            margin: 0;
+        }
+    }
+
+    section {
+        margin: 1rem 0;
+    }
+
+    ul li,
+    p {
+        strong {
+            font-variant: small-caps;
+            border-bottom: $border-default;
+        }
+    }
+
+    a {
+        &:hover, &:focus, &:target {
+            color: $color--hover-oscuro;
+        }
+    }
+}

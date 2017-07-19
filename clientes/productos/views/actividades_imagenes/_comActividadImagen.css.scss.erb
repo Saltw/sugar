@@ -1,0 +1,135 @@
+/*----------- sass-erb (models) -----------*/
+
+/**
+* El id se construye
+* carpeta_vista-|index|show|pedido|-relacionImagen-[modificador1...]--idUnico
+*
+* actividades-show--@post.id
+*     Clase: ActividadImagen
+*     belongs_to :actividad
+*     has_attached_file : imagen
+*
+*     Clase: Actividad
+*     modelo portada
+*
+*/
+
+@mixin mostrar-paperclips-actividades_imagenes (
+    $id: ActividadImagen,
+    $bg-position: 50% 50%,
+    $bg-size: cover,
+    $bg-repeat: no-repeat
+) {
+    // has_attached_file : imagen
+    @if ($id == 'actividades-show-galeria') or ($id == 'actividades-index-actividad-galeria') or ($id == 'actividades_categorias-index-actividad-galeria') or ($id == 'actividades_categorias-show-actividad-galeria'){
+        <%ActividadImagen.order(:orden).all.each do |img| %>
+        <%unless img.imagen.blank?%>
+        // Contenedor de la imagen
+        ##{$id}--<%=img.id%> {
+            <% 8.downto(1) do |i| %>
+            @media all and (min-width: <%=i-1%>*20em) and (max-width: <%=i%>*20em) {
+                <% url = eval("img.imagen(:lands_"+i.to_s+"x)") %>
+                &:before {
+                    background: url('<%= url %>');
+                }
+            }
+            <%end%>
+
+            @media all and (min-width:160em) {
+                &:before {
+                    background: url('<%= img.imagen(:original)%>');
+                }
+            }
+            @media all {
+                &:before {
+                    background-position: $bg-position;
+                    background-size: $bg-size;
+                    background-repeat: $bg-repeat;
+                }
+            }
+        }
+        <%end%>
+        <%end%>
+    }
+
+    @else if ($id == 'actividades-show-galeria-icon') or ($id == 'actividades-index-actividad-galeria-icon') or ($id == 'actividades_categorias-index-actividad-galeria-icon') or ($id == 'actividades_categorias-show-actividad-galeria-icon'){
+        <%ActividadImagen.all.each do |img| %>
+        <%unless img.imagen.blank?%>
+        ##{$id}--<%=img.id%> {
+
+            &:before {
+                background: url('<%= img.imagen(:icon_lands) %>');
+
+                background-position: $bg-position;
+                background-size: $bg-size;
+                background-repeat: $bg-repeat;
+            }
+        }
+        <%end%>
+        <%end%>
+    }
+
+    // ESTE ES EL BUCLE CORRECTO PARA PORTADAS
+    // RECIBE LA PORTADA COMPLETA (con titulo, subtitulo...)
+    // HAY QUE TRABAJAR SOLO CON EL ARCHIVO DE IMAGEN
+    // has_attached_file :imagen
+    @else if ($id == 'actividades-show-portada') or ($id == 'actividades-index-actividad-portada') or ($id == 'actividades_categorias-index-actividad-portada') or ($id == 'actividades_categorias-show-actividad-portada'){
+        <%Actividad.order(:id).all.each do |img| %>
+        <%unless img.portada.blank?%>
+        ##{$id}--<%=img.id%> {
+            <% 8.downto(1) do |i| %>
+            @media all and (min-width: <%=i%>*20em) and (max-width: <%=i+1%>*20em ) {
+                <% url = eval("img.portada.imagen.url(:lands_"+i.to_s+"x)") %>
+
+                &:before {
+                    background: url('<%= url %>');
+                }
+            }
+            <%end%>
+
+            @media all and (min-width: 1em) and (max-width:19em) {
+                &:before {
+                    background: url('<%= img.portada.imagen.url(:icon_lands)%>');
+                }
+            }
+            @media all and (min-width:160em) {
+                &:before {
+                    background: url('<%= img.portada.imagen.url(:original)%>');
+                }
+            }
+            @media all {
+                &:before {
+                    background-position: $bg-position;
+                    background-size: $bg-size;
+                    background-repeat: $bg-repeat;
+                }
+            }
+        }
+        <%end%>
+        <%end%>
+    }
+
+    @else if ($id == 'actividades-show-portada-icon') or ($id == 'actividades-index-actividad-portada-icon') or ($id == 'actividades_categorias-index-actividad-portada-icon') or ($id == 'actividades_categorias-show-actividad-portada-icon') {
+        <%Actividad.order(:id).all.each do |img| %>
+        <%unless img.portada.blank?%>
+        ##{$id}--<%=img.id%> {
+
+            &:before {
+                background: url('<%= img.portada.imagen.url(:icon_lands)%>');
+
+                background-position: $bg-position;
+                background-size: $bg-size;
+                background-repeat: $bg-repeat;
+            }
+        }
+        <%end%>
+        <%end%>
+    }
+
+
+    @else {
+        @media all {
+            background-color: tomato;
+        }
+    }
+}

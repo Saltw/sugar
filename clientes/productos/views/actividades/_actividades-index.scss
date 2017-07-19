@@ -1,0 +1,302 @@
+@mixin stilos-index {
+
+    width: 100%;
+    & > section,
+    & > article {
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    position: relative;
+
+    .caracteristicas h4,
+    .desplegable label {
+        @include responsive-font-size (1rem, 1.2rem, 10rem, 80rem);
+    }
+
+    .producto {
+        padding-bottom: 4%;
+        margin-bottom: 2%;
+        border-bottom: $border-default;
+
+        .caracteristicas,
+        footer,
+        & h3 {
+            width: 100%;
+            margin-bottom: 0;
+        }
+
+        strong {
+            font-variant: normal;
+            font-weight: bold;
+            border: none;
+        }
+
+        /* Imágenes incrustadas en el texto ckeditor*/
+        img {
+            width: 80%;
+            margin: 2% 10% 5% 10%;
+            box-shadow: 0 14pt 28pt rgba(#000, 0.25),
+            0 10pt 10pt rgba(#000, 0.22);
+        }
+
+        .caracteristicas {
+            h4 {
+                // Contraresta el abcenter para el imagenes-index
+                width: 100%;
+
+                margin: 0;
+                font-family: $font-family-body;
+                font-weight: bold;
+                color: $color-subtitle;
+            }
+            p,
+            ul, li {
+                text-align: center;
+            }
+        }
+
+        footer {
+            text-align: center;
+            a {
+                display: inline-block;
+                overflow: hidden;
+
+                padding: 0.5em 1em;
+                text-align: center;
+
+                $map:(
+                    bg: #eee,
+                    color: $color-subtitle,
+                    color--hover: $color-title
+                );
+                @include boton-gradient($map...);
+
+                figure {
+                    margin: 0;
+                }
+            }
+        }
+    }
+}
+
+@mixin portada-img (
+    $selector: h2,
+    $h-portada: 60vmin
+){
+    & > header {
+        position: relative;
+
+        & > #{$selector},
+        & > figure {
+            width: 100%;
+            height: $h-portada;
+        }
+
+        & > #{$selector} {
+            width: 90%;
+            margin: 0 auto;
+            position: absolute;
+            z-index: $z-index-fixed;
+            left: 0;
+            right: 0;
+            line-height: 1.1em;
+
+            // Para titulos largos usar
+            // wrapping-ie-abcenter
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+
+            -ms-flex-wrap: wrap;
+                flex-wrap: wrap;
+
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -ms-flex-line-pack: center;
+            align-content: center;
+
+            color: #fff;
+            text-shadow: 1px 1px 2px #000;
+
+            @include responsive-font-size (1.5rem, 4rem, 20rem, 100rem);
+        }
+
+        & > figure {
+            margin: 0;
+            $fondo: linear-gradient(colorea($color-subtitle, l2), transparent);
+
+            @include simple-before ((bg-color: $fondo)...);
+        }
+    }
+}
+
+@mixin producto-img {
+    $margin: 1em;
+    $h-portada-producto: 50vmin;
+
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+
+    & > figure {
+        height: $h-portada-producto;
+        margin: 0 auto;
+        overflow: hidden;
+
+        $fondo: linear-gradient(colorea($color-subtitle, l2), transparent);
+
+        @include simple-before ((bg-color: $fondo)...);
+        @include hasta (40rem) {
+            width: 100%;
+        }
+    }
+
+    @include desde (40rem) {
+        & > h3 {
+            width: 50%;
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+
+        & > figure,
+        .caracteristicas {
+            margin-left: -($margin / 2);
+            margin-right: -($margin / 2);
+
+            width  : item-width(50%, $margin);
+            margin : $margin / 2;
+
+            & h4 {
+                // sobreescribe el 100% del index de /actividades
+                width: 100%;
+            }
+        }
+    }
+}
+
+@mixin stilos-show-img {
+
+    // En la Gema Base
+    @include portada-img;
+
+    footer {
+        padding-bottom: 5%;
+        nav.anterior-siguiente {
+            @include stilos-footer-img;
+        }
+    }
+}
+
+@mixin stilos-footer-simple {
+    margin-top: 5%;
+
+    margin-top: 5%;
+    a {
+        display: inline-block;
+        padding: 0.5em 1em;
+        $map:(
+            bg: #eee,
+            color: $color-subtitle,
+            color--hover: $color-title
+        );
+        @include boton-gradient($map...);
+
+        figure {
+            margin: 0;
+        }
+    }
+}
+
+@mixin stilos-footer-img {
+    ul {
+        -ms-flex-pack: distribute;
+            justify-content: space-around;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+    }
+    a {
+        // Anular boton-gradient
+        padding: 0;
+        border-radius: 100%;
+
+        // Contraresta mixin boton-gradient
+        &:hover, &:focus, &:target {
+            border: none;
+            & figure figcaption {
+                color: $color-title;
+            }
+        }
+
+        & figure {
+            @include spartano-before;
+            $mup:(display: block);
+            @include button-img ($mup...);
+
+            figcaption {
+                @include rwd-font-size (0.6rem, 1.1rem, 20rem, 80rem, 0.3rem);
+                margin-top: 1em;
+                text-align: center;
+                font-weight: bold;
+                white-space: normal;
+                font-style: normal;
+                font-family: $font-family-subtitle;
+                color: $color-subtitle;
+
+                strong {
+                    white-space: nowrap;
+                }
+            }
+        }
+    }
+}
+
+.actividades-index {
+    // position: relative;
+    @include stilos-index;
+
+/*=============================================>>>>>
+= NOTA: Sólo con entradas_categorias =
+===============================================>>>>>*/
+    & > footer {
+    @include mostrar-paperclips-actividades_categorias ((id:'actividades-index-categorias-icon')...);
+        @include stilos-footer-img;
+    }
+/*= End of NOTA: Sólo con entradas_categorias =*/
+/*=============================================<<<<<*/
+
+    .producto {
+
+        @include desde (40rem) {
+            @include grid (desplegable, 2);
+        }
+
+        .desplegable {
+            $mop:(
+                color: $color-subtitle,
+                color--hover: $color-title,
+                color--checked: #222
+            );
+            @include desplegable ($mop...);
+
+            & > article {
+                ul {
+                    li {
+                        list-style-type: disc;
+                        list-style-position: inside;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,7 @@
+.entradas_categorias-show {
+    @include mostrar-paperclips-entradas_imagenes ((id:'entradas_categorias-show-entrada-portada')...);
+
+    .ultimas {
+        @include ultimas-img;
+    }
+}

@@ -1,0 +1,7 @@
+.actividades-index {
+    @include mostrar-paperclips-actividades_imagenes ((id:'actividades-index-actividad-portada')...);
+
+    & > article.producto {
+        @include producto-img;
+    }
+}

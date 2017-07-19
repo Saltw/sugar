@@ -1,0 +1,48 @@
+// En construcción
+@mixin colores-sociales {
+    $sociales: (
+    youtube: #b00,
+    linkedin: #0077b5,
+    googleplus: #dd4b39,
+    twitter: #00aced,
+    facebook: #3b5998,
+    );
+
+    @each $social, $bgcolor in $sociales {
+        &.icon-#{$social} {
+            &:hover, &:focus, &:target {
+                color: #fff;
+                background: $bgcolor;
+            }
+        }
+    }
+}
+
+//
+// .sociales {
+//     li {
+//         padding: .4em;
+//         margin: .3em;
+//         border-radius: 50%;
+//         background: #fff;
+//         color: rgba($bg-footer-top, $opacity);
+//         // &.icon-facebook {
+//         //     &:hover, &:focus, &:target {
+//         //         background: #3b5998;
+//         //         color: #fff;
+//         //     }
+//         // }
+//         // &.icon-twitter {
+//         //     &:hover, &:focus, &:target {
+//         //         background: #00aced;
+//         //         color: #fff;
+//         //     }
+//         // }
+//         // &.icon-googleplus{
+//         //     &:hover, &:focus, &:target {
+//         //         background: #dd4b39;
+//         //         color: #fff;
+//         //     }
+//         // }
+//     }
+// }

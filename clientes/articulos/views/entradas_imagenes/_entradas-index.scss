@@ -1,0 +1,7 @@
+.entradas-index {
+    @include mostrar-paperclips-entradas_imagenes ((id:'entradas-index-entrada-portada')...);
+
+    .ultimas {
+        @include ultimas-img;
+    }
+}

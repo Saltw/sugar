@@ -1,0 +1,135 @@
+/*----------- sass-erb (models) -----------*/
+
+/**
+* El id se construye
+* carpeta_vista-|index|show|pedido|-relacionImagen-[modificador1...]--idUnico
+*
+* entradas-show--@post.id
+*     Clase: EntradaImagen
+*     belongs_to :entrada
+*     has_attached_file : imagen
+*
+*     Clase: Entrada
+*     modelo portada
+*
+*/
+
+@mixin mostrar-paperclips-entradas_imagenes (
+    $id: EntradaImagen,
+    $bg-position: 50% 50%,
+    $bg-size: cover,
+    $bg-repeat: no-repeat
+){
+    // has_attached_file : imagen
+    @if ($id == 'entradas-show') {
+        <%EntradaImagen.order(:orden).all.each do |img| %>
+        <%unless img.imagen.blank?%>
+        // Contenedor de la imagen
+        ##{$id}--<%=img.id%> {
+            <% 8.downto(1) do |i| %>
+            @media all and (min-width: <%=i-1%>*20em) and (max-width: <%=i%>*20em) {
+                <% url = eval("img.imagen(:lands_"+i.to_s+"x)") %>
+                &:before {
+                    background: url('<%= url %>');
+                }
+            }
+            <%end%>
+
+            @media all and (min-width:160em) {
+                &:before {
+                    background: url('<%= img.imagen(:original)%>');
+                }
+            }
+            @media all {
+                &:before {
+                    background-position: $bg-position;
+                    background-size: $bg-size;
+                    background-repeat: $bg-repeat;
+                }
+            }
+        }
+        <%end%>
+        <%end%>
+    }
+
+    @else if ($id == 'entradas-show-icon') {
+        <%EntradaImagen.all.each do |img| %>
+        <%unless img.imagen.blank?%>
+        ##{$id}--<%=img.id%> {
+
+            &:before {
+                background: url('<%= img.imagen(:icon_lands) %>');
+
+                background-position: $bg-position;
+                background-size: $bg-size;
+                background-repeat: $bg-repeat;
+            }
+        }
+        <%end%>
+        <%end%>
+    }
+
+    // ESTE ES EL BUCLE CORRECTO PARA PORTADAS
+    // RECIBE LA PORTADA COMPLETA (con titulo, subtitulo...)
+    // HAY QUE TRABAJAR SOLO CON EL ARCHIVO DE IMAGEN
+    // has_attached_file :imagen
+    @else if ($id == 'entradas-show-portada') or ($id == 'entradas-index-entrada-portada') or ($id == 'entradas_categorias-show-entrada-portada'){
+        <%Entrada.order(:id).all.each do |img| %>
+        <%unless img.portada.blank?%>
+        ##{$id}--<%=img.id%> {
+            <% 8.downto(1) do |i| %>
+            @media all and (min-width: <%=i%>*20em) and (max-width: <%=i+1%>*20em ) {
+                <% url = eval("img.portada.imagen.url(:lands_"+i.to_s+"x)") %>
+
+                &:before {
+                    background: url('<%= url %>');
+                }
+            }
+            <%end%>
+
+            @media all and (min-width: 1em) and (max-width:19em) {
+                &:before {
+                    background: url('<%= img.portada.imagen.url(:icon_lands)%>');
+                }
+            }
+            @media all and (min-width:160em) {
+                &:before {
+                    background: url('<%= img.portada.imagen.url(:original)%>');
+                }
+            }
+            @media all {
+                &:before {
+                    background-position: $bg-position;
+                    background-size: $bg-size;
+                    background-repeat: $bg-repeat;
+                }
+            }
+        }
+        <%end%>
+        <%end%>
+    }
+
+    @else if ($id == 'entradas-show-portada-icon') {
+        <%Entrada.order(:id).all.each do |img| %>
+        <%unless img.portada.blank?%>
+        ##{$id}--<%=img.id%> {
+
+            &:before {
+                background: url('<%= img.portada.imagen.url(:icon_lands)%>');
+
+                background-position: $bg-position;
+                background-size: $bg-size;
+                background-repeat: $bg-repeat;
+            }
+        }
+        <%end%>
+        <%end%>
+    }
+
+
+    @else {
+        @media all {
+            background-color: red;
+        }
+    }
+}

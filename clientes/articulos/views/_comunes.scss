@@ -1,0 +1,154 @@
+/*=============================================>>>>>
+= Complementos =
+===============================================>>>>>*/
+
+/* strong.nombre-empresa*/
+.nombre-empresa {
+
+}
+/*----------- SVG -----------*/
+.svg,
+.svg-mini,
+.svg-abbr,
+.svg-large {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin: 0;
+}
+
+.svg {
+    svg {
+        height: $height-svg;
+        width: $height-svg * $svg-x/$svg-y;
+    }
+
+    &-mini {
+        svg {
+            height: $height-svg-mini;
+            width: $height-svg-mini * $svg-x/$svg-y;
+        }
+    }
+
+    &-large {
+        svg {
+            height: $height-svg-large;
+            width: $height-svg-large *$svg-large-x/$svg-large-y;
+        }
+    }
+}
+/*----------- fin de SVG -----------*/
+
+.legal,
+.index {
+    @include hasta (35rem) {
+        width: $width-35;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    @include desde (35rem) {
+        width: $width-80;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.contacto {
+    padding: $padding-comunes;
+}
+
+.index {
+    padding-bottom: $padding-comunes;
+}
+
+.button-img {
+    margin: 1em;
+    @include spartano-before;
+    @include button-img;
+
+    figcaption {
+        font-style: normal;
+        @include rwd-font-size (0.6rem, 1.1rem, 20rem, 80rem, 0.3rem);
+
+        strong {
+            white-space: nowrap;
+        }
+    }
+}
+
+.galeria {
+    /* ul.modal*/
+    & .modal {
+        /* Contenedor figure*/
+        $map:(max-font-icon: 10rem);
+        @include simple-gallery($map...);
+
+        .imagen {
+            & a {
+                &.ar,
+                &.av {
+                    font-family: $font-family-header;
+                    font-weight: 900;
+                }
+
+                &.actual {
+                    figure {
+                        @include spartano-before;
+                    }
+                }
+            }
+        }
+    }
+
+    /* ul.miniaturas*/
+    & .miniaturas {
+
+        & li {
+            display: -webkit-inline-box;
+            display: -ms-inline-flexbox;
+            display: inline-flex;
+            margin: 0.6em;
+            /* Evitar fondo transparente al transform*/
+            background-color: $bg-body;
+            box-shadow: 0pt 1pt 2pt rgba(#000, 0.4);
+            -webkit-transition: ease-in-out 0.35s;
+            transition: ease-in-out 0.35s;
+
+            &:hover, &:focus, &:target {
+                box-shadow: $box-shadow--hover;
+                -webkit-transform: scale(1.1);
+                        transform: scale(1.1);
+            }
+
+            // Contrarresta .legal
+            &:only-of-type,
+            &:last-child,
+            &:only-child {
+                margin: 0.6em;
+            }
+
+
+            & a {
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                width: 100%;
+
+                & figure {
+                    /* ratio 16:9*/
+                    width: 128pt;
+                    height: 72pt;
+                    margin: $top;
+                    $fondo: linear-gradient(colorea($color-t1, l2), transparent);
+
+                    @include simple-before ((bg-color: $fondo)...);
+
+                }
+            }
+        }
+    }
+}
+
+/*=============================================>>>>>
+= Paths =
+===============================================>>>>>*/

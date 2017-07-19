@@ -1,0 +1,13 @@
+.actividades_categorias-index {
+    @include mostrar-paperclips-actividades_imagenes ((id:'actividades_categorias-index-actividad-portada')...);
+    @include mostrar-paperclips-actividades_imagenes ((id:'actividades_categorias-index-actividad-galeria')...);
+    @include mostrar-paperclips-actividades_imagenes ((id:'actividades_categorias-index-actividad-galeria-icon')...);
+
+
+    .categoria {
+        .producto {
+            // actividades_imagenes/actividades-index.scss
+            @include producto-img;
+        }
+    }
+}

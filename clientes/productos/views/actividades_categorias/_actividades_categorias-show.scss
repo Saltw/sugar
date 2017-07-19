@@ -1,0 +1,86 @@
+.actividades_categorias-show {
+    @include mostrar-paperclips-actividades_categorias ((id:'actividades_categorias-show')...);
+    @include mostrar-paperclips-actividades_categorias ((id:'actividades_categorias-show-icon')...);
+
+    // Anula .legal
+    width: 100%;
+
+    @include stilos-index;
+
+    // class .legal
+    header {
+        padding: 1em 0;
+        margin-bottom: 1em;
+        background-color: transparent;
+        border-bottom: $border-default;
+    }
+
+    $map:(
+        selector: h2
+    );
+    @include portada-img($map...);
+
+    .detalles {
+        width: 100%;
+        margin-top: 2%;
+        margin-bottom: 2%;
+    }
+
+    .desplegable {
+        margin-bottom: 2%;
+        $mop:(
+            color: $color-subtitle,
+            color--hover: $color-title,
+            color--checked: #222
+        );
+        @include desplegable ($mop...);
+    }
+
+    .producto {
+        $mip:(
+        // Número de pestañas
+        through-tab-num: 3,
+        // Número de vueltas del each
+        through-tab-id: 200,
+        id-tab: actividades_categorias-show-actividad-tab,
+        id-contenido: actividades_categorias-show-actividad-contenido
+        );
+        @include tabs ($mip...);
+
+        .ficha {
+            width: 100%;
+            ul {
+                li {
+                    list-style-type: disc;
+                    list-style-position: inside;
+                }
+            }
+        }
+    }
+
+    footer {
+        margin-top: 5%;
+
+        nav.anterior-siguiente {
+            margin-top: 5%;
+            a {
+                display: block;
+                padding: 0.5em 1em;
+                $map:(
+                    bg: #eee,
+                    color: $color-subtitle,
+                    color--hover: $color-title
+                );
+                @include boton-gradient($map...);
+
+                figure {
+                    margin: 0;
+                }
+            }
+        }
+        padding-bottom: 5%;
+        nav.anterior-siguiente {
+            @include stilos-footer-img;
+        }
+    }
+}

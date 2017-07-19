@@ -1,0 +1,13 @@
+.entradas_categorias-show {
+    @include mostrar-paperclips-entradas_categorias ((id:'entradas_categorias-show')...);
+    @include mostrar-paperclips-entradas_categorias ((id:'entradas_categorias-show-icon')...);
+
+    /*----------- x -----------*/
+
+    @include portada-img;
+    @include stilos-show-img;
+    @include footer-img;
+    .ultimas {
+        @include ultimas;
+    }
+}

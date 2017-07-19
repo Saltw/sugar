@@ -1,0 +1,11 @@
+.entradas-show {
+    @include mostrar-paperclips-entradas_imagenes ((id:'entradas-show-portada')...);
+    @include mostrar-paperclips-entradas_imagenes ((id:'entradas-show-portada-icon')...);
+    @include mostrar-paperclips-entradas_imagenes ((id:'entradas-show')...);
+    @include mostrar-paperclips-entradas_imagenes ((id:'entradas-show-icon')...);
+
+    @include portada-img;
+    @include stilos-show-img;
+    @include galeria-default;
+    @include footer-img;
+}

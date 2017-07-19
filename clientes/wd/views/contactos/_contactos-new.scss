@@ -1,0 +1,28 @@
+// article.contacto
+.contacto {
+    // margin: $top 0;
+    overflow: hidden;
+
+    $img-map:(
+        url: "http://lorempixel.com/640/480/",
+        height: inherit,
+        bg-color: $rgba-70);
+
+    @include simple-bg ($img-map...);
+    @include simple-form-ie;
+
+    // contacto__form
+    &__form {
+        @include estilo-details-ie;
+
+        @include hasta (35rem) {
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        @include desde (35rem) {
+            @include rwd-width;
+        }
+        // padding-bottom: 5vmin;
+    }
+}

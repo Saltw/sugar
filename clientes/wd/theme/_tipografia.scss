@@ -1,0 +1,64 @@
+/*=============================================>>>>>
+= TIPOGRAFÍA BASE =
+===============================================>>>>>*/
+
+/*----------- FONT-WEIGHT -----------*/
+/* normal | bold | bolder | lighter | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | inherit*/
+$thin       : 100;
+$extra-light: 200;
+$light      : 300;
+$regular    : 400;
+$medium     : 500;
+$semi-bold  : 600;
+$bold       : 700;
+$extra-bold : 800;
+$black      : 900;
+
+/* Estilos base*/
+/* -- secciones y descendientes*/
+$font-weight-header: 900;
+$font-weight-title: 800;
+$font-weight-subtitle: 700;
+/* -- párrafos*/
+$font-weight-p : 400;
+/* --sumario fondo foto*/
+$font-weight-keyword: 300;
+$font-weignt-nota: 100;
+
+/*----------- FONT-FAMILY -----------*/
+/* familia | generica, familia | generica, ... | inherit*/
+
+/* base*/
+// $font-family-body : 'PuppyBellies' !important;
+$font-family-body : 'Montserrat', sans-serif;
+
+/* títulos*/
+$font-family-title: 'Gloria Hallelujah', cursive;
+$font-family-subtitle: 'Gloria Hallelujah', cursive;
+
+/* Header */
+$font-family-header: 'Gloria Hallelujah', cursive;
+// $font-family-header: 'Raleway', sans-serif;
+
+// especiales
+$font-family-special: 'Gloria Hallelujah', cursive;
+// $font-family-special: 'Dancing Script', cursive;
+
+/* footer (siempre italic)*/
+/* $font-family-number: 'Raleway', sans-serif;*/
+
+/*----------- FONT-SIZE -----------*/
+/* mixins-viewport / @mixin rwd-font-size*/
+
+/*----------- FONT-VARIANT -----------*/
+/* normal | small-caps | inherit*/
+
+/*----------- TEXT-TRANSFORM -----------*/
+/* upercase | capitalize*/
+
+/*----------- TEXT-SHADOW's -----------*/
+// Text-shadows del sitio
+
+
+/*= End of TIPOGRAFIA =*/
+/*=============================================<<<<<*/

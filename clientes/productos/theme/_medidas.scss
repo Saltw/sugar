@@ -1,0 +1,48 @@
+/*=============================================>>>>>
+= TAMAÑOS Y MEDIDAS =
+===============================================>>>>>*/
+
+/*----------- GLOBAL -----------*/
+/* 1em = 16px*/
+
+/* Para casos de global width máximo*/
+// $max-width: 80em;
+$max-width: 100%;
+
+// Declaración de los widht paths y comunes
+$width-35: 90%;
+$width-80: 80%;
+$width-90: 75%;
+$padding-comunes: 5%;
+
+/* Alturas elementos fijos*/
+$height-header: 3em;
+    $height-menu: 1.5; // em
+    $padding-menu: 0.6em;
+$height-footer: 1.5em;
+
+// medidas svg
+$svg-x: 100;
+$svg-y: 180.138;
+$svg-large-x: 1417.333;
+$svg-large-y: 539.929;
+$height-svg: $height-header;
+$height-svg-mini: $height-footer;
+$height-svg-large: $height-footer;
+
+// footer pegajoso
+$min-h-main: calc(100vh - (#{$height-header} + #{$height-footer}));
+
+/* Separación entre items*/
+$padding: 1rem;
+
+/* Separación entre contenedores en el cross-axis (medida más pequeña)*/
+$top: 0.3rem;
+
+/* Párrafos*/
+$line-height : 1.6;    /* Minima accesibilidad visual*/
+$word-spacing: 2pt;    /* Minima accesibilidad visual*/
+$margin-p: 1rem;
+
+/*= End of TAMAÑOS Y MEDIDAS =*/
+/*=============================================<<<<<*/

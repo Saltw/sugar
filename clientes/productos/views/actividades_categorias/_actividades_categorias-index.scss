@@ -1,0 +1,63 @@
+.actividades_categorias-index {
+    @include mostrar-paperclips-actividades_categorias ((id:'actividades_categorias-index')...);
+
+    @include galeria-default;
+
+    // Anula .legal
+    width: 100%;
+
+    .categoria {
+        @include stilos-index;
+
+        // class .legal
+        header {
+            padding: 1em 0;
+            margin-bottom: 1em;
+            background-color: transparent;
+            border-bottom: $border-default;
+        }
+
+        $map:(
+            selector: h3
+        );
+        @include portada-img($map...);
+
+        .detalles {
+            width: 100%;
+            margin-top: 2%;
+            margin-bottom: 2%;
+        }
+
+        .desplegable {
+            margin-bottom: 2%;
+            $mop:(
+                color: $color-subtitle,
+                color--hover: $color-title,
+                color--checked: #222
+            );
+            @include desplegable ($mop...);
+        }
+
+        .producto {
+            $mip:(
+            // Número de pestañas
+            through-tab-num: 3,
+            // Número de vueltas del each
+            through-tab-id: 200,
+            id-tab: actividades_categorias-index-actividad-tab,
+            id-contenido: actividades_categorias-index-actividad-contenido
+            );
+            @include tabs ($mip...);
+
+            .ficha {
+                width: 100%;
+                ul {
+                    li {
+                        list-style-type: disc;
+                        list-style-position: inside;
+                    }
+                }
+            }
+        }
+    }
+}

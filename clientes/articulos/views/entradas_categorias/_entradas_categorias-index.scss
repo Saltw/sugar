@@ -1,0 +1,10 @@
+.entradas_categorias-index {
+    @include mostrar-paperclips-entradas_categorias ((id:'entradas_categorias-index')...);
+
+    @include desplegame;
+
+    &.ultimas {
+        @include ultimas((capirote: bottom)...);
+        @include ultimas-img;
+    }
+}
